@@ -12,7 +12,10 @@ import br.com.fernandomflopes.googlebooks.model.Volume
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_book.view.*
 
-class BookListAdapter(val items: List<Volume>): RecyclerView.Adapter<BookListAdapter.BookHolder>() {
+class BookListAdapter(
+    private val items: List<Volume>,
+    private val onItemClick: (Volume) -> Unit
+    ): RecyclerView.Adapter<BookListAdapter.BookHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookHolder {
@@ -35,6 +38,9 @@ class BookListAdapter(val items: List<Volume>): RecyclerView.Adapter<BookListAda
         holder.txtTitle.text = volume.volumeInfo.title
         holder.txtAuthor.text = volume.volumeInfo.authors?.joinToString() ?: ""
         holder.txtPages.text = volume.volumeInfo.pageCount.toString() ?: "-"
+        holder.itemView.setOnClickListener {
+            onItemClick(volume)
+        }
     }
 
     override fun getItemCount(): Int {
