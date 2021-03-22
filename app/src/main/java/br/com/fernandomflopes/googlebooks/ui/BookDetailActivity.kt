@@ -1,5 +1,7 @@
 package br.com.fernandomflopes.googlebooks.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import br.com.fernandomflopes.googlebooks.R
@@ -12,7 +14,7 @@ class BookDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_detail)
 
-        val volume = intent.getParcelableExtra<Volume>("EXTRA_BOOK")
+        val volume = intent.getParcelableExtra<Volume>(TAG)
         if (volume != null) {
 
 
@@ -34,4 +36,16 @@ class BookDetailActivity : AppCompatActivity() {
         }
 
     }
+
+    companion object {
+        val TAG = "BOOK_EXTRA"
+
+        fun open(ctx: Context, volume: Volume) {
+            val intent = Intent(ctx, BookDetailActivity::class.java).apply {
+                putExtra(TAG, volume)
+            }
+            ctx.startActivity(intent)
+        }
+    }
+
 }

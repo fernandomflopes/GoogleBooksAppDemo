@@ -8,7 +8,7 @@ import org.junit.Assert.*
 
 
 class BookHttpUnitTest {
-    private val KEY = "MY_KEY"
+    private val KEY = "MY_KEY2"
 
     @Test
     fun googleBooksApiTest() {

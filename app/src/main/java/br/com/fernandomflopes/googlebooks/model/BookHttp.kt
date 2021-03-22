@@ -10,7 +10,7 @@ object BookHttp {
 
     private val client = OkHttpClient.Builder()
         .readTimeout(10, TimeUnit.SECONDS)
-        .connectTimeout(10, TimeUnit.SECONDS)
+        .connectTimeout(5, TimeUnit.SECONDS)
         .build()
 
 

@@ -29,9 +29,14 @@ class BookListAdapter(
         val volume = items[position]
 
         if(volume.volumeInfo.imageLinks != null) {
-            Picasso.get().load(volume?.volumeInfo?.imageLinks?.smallThumbnail?.replace("http", "https")).into(
-                holder.imgCover
-            )
+            Picasso.get()
+                .load(volume
+                    ?.volumeInfo
+                    ?.imageLinks
+                    ?.smallThumbnail
+                    ?.replace("http", "https")).into(
+                        holder.imgCover
+                    )
 
         }
 
