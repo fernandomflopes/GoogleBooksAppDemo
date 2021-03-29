@@ -19,32 +19,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-    val viewModel: BookListViewModel by lazy {
-        ViewModelProvider(this).get(BookListViewModel::class.java)
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        viewModel.state.observe(this) { state ->
-            when(state) {
-                is BookListViewModel.State.Loading ->
-                    viewLoading.visibility = View.VISIBLE
-                is BookListViewModel.State.Loaded -> {
-                    recyclerView.adapter = BookListAdapter(state.items) { vol ->
-                        BookDetailActivity.open(this@MainActivity, vol)
-                    }
-                    viewLoading.visibility = View.GONE
-                }
-                is BookListViewModel.State.Error -> {
-                    Toast.makeText(this@MainActivity, "OPS", Toast.LENGTH_SHORT).show()
-                    viewLoading.visibility = View.GONE
-                }
-            }
 
-        }
-        viewModel.loadBooks(getString(R.string.googleBooksKey))
     }
 }
