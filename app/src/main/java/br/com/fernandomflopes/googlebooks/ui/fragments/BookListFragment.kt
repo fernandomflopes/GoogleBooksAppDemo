@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -53,6 +54,17 @@ class BookListFragment: Fragment() {
 
         }
         viewModel.loadBooks(getString(R.string.googleBooksKey))
+        view.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(txt: String?): Boolean {
+                if (txt != null) {
+                    viewModel.loadBooks(getString(R.string.googleBooksKey), txt)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean = true
+
+        })
     }
 
     companion object {

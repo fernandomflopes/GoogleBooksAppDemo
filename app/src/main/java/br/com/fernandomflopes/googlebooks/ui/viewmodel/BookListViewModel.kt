@@ -16,14 +16,14 @@ class BookListViewModel : ViewModel(){
     val state: LiveData<State>
         get() = _state
 
-    fun loadBooks(apiKey: String) {
-        if(_state.value is State.Loaded)
-            return
+    fun loadBooks(apiKey: String, searchText: String = "Dominando o android") {
+//        if(_state.value is State.Loaded)
+//            return
 
         viewModelScope.launch {
             _state.value = State.Loading
             val result = withContext(Dispatchers.IO) {
-                BookHttp.searchBook(apiKey, "Dominando o android")
+                BookHttp.searchBook(apiKey, searchText)
             }
 
             if(result?.items == null) {
