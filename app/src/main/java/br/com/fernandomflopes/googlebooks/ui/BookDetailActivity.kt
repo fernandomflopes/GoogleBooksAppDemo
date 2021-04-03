@@ -17,11 +17,14 @@ class BookDetailActivity : AppCompatActivity() {
         val volume = intent.getParcelableExtra<Volume>(TAG)
         if (volume != null) {
 
-
             if(volume.volumeInfo.imageLinks != null) {
-                Picasso.get().load(volume?.volumeInfo?.imageLinks?.smallThumbnail?.replace("http", "https")).into(
-                    imgCover
-                )
+                Picasso.get()
+                        .load(volume?.volumeInfo
+                                ?.imageLinks
+                                ?.smallThumbnail
+                                ?.replace("http", "https")).into(
+                                                imgCover
+                                            )
 
             }
 

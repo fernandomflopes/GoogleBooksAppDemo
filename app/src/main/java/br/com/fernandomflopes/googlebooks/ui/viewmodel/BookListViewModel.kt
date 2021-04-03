@@ -17,9 +17,6 @@ class BookListViewModel : ViewModel(){
         get() = _state
 
     fun loadBooks(apiKey: String, searchText: String = "Dominando o android") {
-//        if(_state.value is State.Loaded)
-//            return
-
         viewModelScope.launch {
             _state.value = State.Loading
             val result = withContext(Dispatchers.IO) {
